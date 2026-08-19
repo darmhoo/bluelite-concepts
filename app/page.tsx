@@ -1,249 +1,243 @@
 import Link from "next/link";
-import TicketCard from "@/components/TicketCard";
-import Steam from "@/components/Steam";
+import {
+  Recycle,
+  Layers,
+  Scissors,
+  Droplets,
+  Network,
+  SlidersHorizontal,
+  Ship,
+  UserCheck,
+  ArrowRight,
+} from "lucide-react";
+import SpecTag from "@/components/SpecTag";
+import ImagePlaceholder from "@/components/ImagePlaceholder";
 
-const services = [
+const products = [
   {
-    number: "BLC-101",
-    title: "Shirts & blouses",
-    description: "Hand-finished collars and cuffs, boxed or on hangers.",
-    meta: "from ₦900",
+    icon: Recycle,
+    code: "PET-BTL",
+    title: "PET Bottles",
+    description: "Post-consumer PET bottles sourced through our collection and aggregation network.",
+    href: "/services#pet-bottles",
+    image: "Photo: PET bottles",
   },
   {
-    number: "BLC-204",
-    title: "Suits & tailoring",
-    description: "Two-piece press with seam and lining checked before bagging.",
-    meta: "from ₦4,200",
+    icon: Layers,
+    code: "PET-FLK",
+    title: "PET Flakes",
+    description: "Clear, Green, Blue and Mixed PET flakes processed to customer requirements.",
+    href: "/services#pet-flakes",
+    image: "Photo: PET flakes",
   },
   {
-    number: "BLC-318",
-    title: "Gowns & occasion wear",
-    description: "Beadwork-safe solvent clean for delicate fabric and trim.",
-    meta: "from ₦6,500",
+    icon: Scissors,
+    code: "PET-SHR",
+    title: "PET Shredding",
+    description: "Mechanical shredding of PET bottles into smaller, uniform material.",
+    href: "/services#pet-shredding",
+    image: "Photo: shredded PET",
   },
   {
-    number: "BLC-447",
-    title: "Household linens",
-    description: "Duvets, curtains, and upholstery cleaned and pressed flat.",
-    meta: "from ₦3,000",
+    icon: Droplets,
+    code: "PET-WSH",
+    title: "PET Washing",
+    description: "Cold, warm and hot washing options depending on end-use requirements.",
+    href: "/services#pet-washing",
+    image: "Photo: PET washing/drying",
   },
 ];
 
-const steps = [
-  {
-    n: "01",
-    title: "Pickup",
-    body: "Schedule online or drop in. Every piece is logged against a ticket number before it leaves your hands.",
-  },
-  {
-    n: "02",
-    title: "Clean",
-    body: "Sorted by fabric and stain profile, then run through the right process — solvent, wet, or hand clean.",
-  },
-  {
-    n: "03",
-    title: "Press",
-    body: "Finished on calibrated presses so creases fall where they should, every time.",
-  },
-  {
-    n: "04",
-    title: "Deliver",
-    body: "Back on schedule, boxed or hung, with the same ticket number you started with.",
-  },
+const whyUs = [
+  { icon: Network, title: "Reliable PET sourcing network" },
+  { icon: SlidersHorizontal, title: "Multiple processing options" },
+  { icon: UserCheck, title: "Customer-focused specifications" },
+  { icon: Ship, title: "Export logistics support" },
 ];
 
 export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-steam/70 bg-ink">
-        <div className="bg-press-lines absolute inset-0 opacity-40" />
-        <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-20 sm:pt-28">
-          <div className="relative mx-auto max-w-3xl text-center">
-            <Steam />
-            <p className="ticket-number text-xs uppercase tracking-[0.3em] text-lite/70">
-              Ticket №&nbsp;BLC-0001 · Est. Ibadan
-            </p>
-            <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-chalk sm:text-6xl">
-              Pressed, picked up,
-              <br />
-              <span className="text-lite">and back on time.</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-chalk/60">
-              BlueLite Concepts runs garment care like a ticketing system —
-              every shirt, suit, and gown logged, tracked, and returned
-              exactly when we say it will be.
-            </p>
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="rounded-sm bg-lite px-6 py-3 text-sm font-semibold text-ink transition-transform hover:scale-[1.02]"
-              >
-                Book a pickup
-              </Link>
-              <Link
-                href="/pricing"
-                className="rounded-sm border border-chalk/20 px-6 py-3 text-sm font-medium text-chalk/80 transition-colors hover:border-chalk/40 hover:text-chalk"
-              >
-                See pricing
-              </Link>
+      <section className="relative overflow-hidden border-b border-grey-dark bg-navy">
+        <div className="bg-grid-lines bg-grid absolute inset-0 opacity-40" />
+        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+            <div>
+              <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+                Trusted Nigerian Supplier of Recycled PET Materials
+              </p>
+              <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl">
+                Connecting Nigeria&apos;s PET Recovery Networks to Global
+                Manufacturing Industries
+              </h1>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60">
+                Bluelite Concept LTD supplies recycled PET bottles and PET
+                flakes through a growing network of collectors, aggregators,
+                processing partners and logistics providers across Nigeria.
+                We focus on reliable sourcing, quality processing and
+                international supply for manufacturers and recycling
+                companies worldwide.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/quote"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm bg-emerald px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-dark"
+                >
+                  Request a Quote
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center justify-center rounded-sm border border-white/20 px-6 py-3 text-sm font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white"
+                >
+                  Explore Our Products
+                </Link>
+              </div>
             </div>
+            <ImagePlaceholder
+              label="Photo: baled PET bottles / processing facility"
+              aspect="aspect-square"
+              className="border-white/20 bg-white/5 [&_p]:text-white/40 [&_svg]:text-white/30"
+            />
           </div>
         </div>
       </section>
 
-      {/* SERVICES STRIP */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="ticket-number text-xs uppercase tracking-[0.25em] text-blue">
-              What we clean
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold text-ink">
-              Four ticket categories, one standard
-            </h2>
-          </div>
-          <Link
-            href="/services"
-            className="hidden text-sm font-medium text-blue hover:text-ink sm:block"
-          >
-            All services →
-          </Link>
-        </div>
+      {/* PRODUCT HIGHLIGHTS */}
+      <section className="mx-auto max-w-7xl px-6 py-20">
+        <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          What we supply
+        </p>
+        <h2 className="mt-2 max-w-lg font-display text-3xl font-bold text-navy">
+          Product highlights
+        </h2>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
-            <TicketCard key={s.number} {...s} />
+          {products.map((p) => (
+            <Link key={p.code} href={p.href} className="group block">
+              <SpecTag code={p.code} title={p.title} description={p.description} image={p.image}>
+                <div className="mt-1 flex items-center justify-between">
+                  <p.icon className="h-6 w-6 text-emerald" />
+                  <span className="text-xs font-medium text-navy/40 transition-colors group-hover:text-emerald">
+                    Learn more →
+                  </span>
+                </div>
+              </SpecTag>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* PROCESS — real sequence, numbering earns its keep */}
-      <section className="border-y border-steam/70 bg-chalk">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="ticket-number text-xs uppercase tracking-[0.25em] text-blue">
-            How a ticket moves
+      {/* WHY BLUELITE */}
+      <section className="border-y border-grey-dark bg-grey">
+        <div className="mx-auto max-w-7xl px-6 py-20">
+          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+            Why Bluelite Concept
           </p>
-          <h2 className="mt-2 max-w-lg font-display text-3xl font-semibold text-ink">
-            The same four stages, whether it's one shirt or forty
+          <h2 className="mt-2 max-w-lg font-display text-3xl font-bold text-navy">
+            A supply partner built for reliability
           </h2>
 
-          <div className="relative mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div
-              aria-hidden="true"
-              className="absolute left-0 right-0 top-6 hidden h-px bg-steam lg:block"
-            />
-            {steps.map((step) => (
-              <div key={step.n} className="relative pl-1">
-                <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-ink font-display text-sm font-semibold text-lite">
-                  {step.n}
-                </span>
-                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                  {step.title}
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {whyUs.map((item) => (
+              <div key={item.title}>
+                <item.icon className="h-7 w-7 text-emerald" strokeWidth={1.75} />
+                <h3 className="mt-4 font-display text-base font-semibold text-navy">
+                  {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/60">
-                  {step.body}
-                </p>
               </div>
             ))}
           </div>
+
+          <div className="mt-12 flex flex-wrap gap-x-8 gap-y-2 text-sm text-navy/60">
+            <span>Flexible supply arrangements</span>
+            <span>·</span>
+            <span>FOB &amp; CIF shipping options</span>
+            <span>·</span>
+            <span>Growing Nigerian supply network</span>
+          </div>
         </div>
       </section>
 
-      {/* PRICING PREVIEW */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+      {/* SUSTAINABILITY */}
+      <section className="mx-auto max-w-7xl px-6 py-20">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <p className="ticket-number text-xs uppercase tracking-[0.25em] text-blue">
-              Pricing, printed plainly
+            <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+              Sustainability
             </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold text-ink">
-              No estimates. The ticket price is the price.
+            <h2 className="mt-2 font-display text-3xl font-bold text-navy">
+              Turning plastic waste into valuable resources
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/60">
-              What's quoted at drop-off is what's charged at pickup — stains
-              and repairs are flagged and confirmed with you first, never
-              added on silently.
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-navy/60">
+              We recover post-consumer PET bottles and transform them into
+              valuable recycled materials for global manufacturing, helping
+              reduce plastic pollution and support the circular economy.
             </p>
+            <ImagePlaceholder
+              label="Photo: baled recycled PET ready for export"
+              aspect="aspect-video"
+              className="mt-6"
+            />
             <Link
-              href="/pricing"
-              className="mt-6 inline-block rounded-sm bg-ink px-6 py-3 text-sm font-medium text-chalk transition-colors hover:bg-blue"
+              href="/about"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald hover:text-emerald-dark"
             >
-              View full price list
+              Learn more about us
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-
-          <div className="ticket ticket-perf ticket-stub-top ticket-stub-bottom mx-auto w-full max-w-sm px-8 py-8">
-            <div className="flex items-center justify-between">
-              <span className="font-display text-lg font-semibold text-ink">
-                Sample ticket
-              </span>
-              <span className="ticket-number text-xs text-steam-dark">
-                BLC-2481
-              </span>
+          <div className="spec-tag flex flex-col gap-6 bg-navy px-8 py-10 text-white">
+            <span className="batch-code text-xs text-emerald">
+              CIRCULAR ECONOMY
+            </span>
+            <div className="grid grid-cols-3 gap-6 text-center">
+              <div>
+                <p className="font-display text-2xl font-bold text-white">
+                  Collect
+                </p>
+              </div>
+              <div>
+                <p className="font-display text-2xl font-bold text-white">
+                  Process
+                </p>
+              </div>
+              <div>
+                <p className="font-display text-2xl font-bold text-white">
+                  Export
+                </p>
+              </div>
             </div>
-            <div className="crease my-5" />
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center justify-between text-ink/70">
-                <span>2× Dress shirt</span>
-                <span className="ticket-number">₦1,800</span>
-              </li>
-              <li className="flex items-center justify-between text-ink/70">
-                <span>1× Wool suit, 2-piece</span>
-                <span className="ticket-number">₦4,200</span>
-              </li>
-              <li className="flex items-center justify-between text-ink/70">
-                <span>1× Silk tie</span>
-                <span className="ticket-number">₦700</span>
-              </li>
-            </ul>
-            <div className="crease my-5" />
-            <div className="flex items-center justify-between">
-              <span className="font-display font-semibold text-ink">
-                Total
-              </span>
-              <span className="ticket-number font-semibold text-blue">
-                ₦6,700
-              </span>
-            </div>
-            <p className="mt-4 text-center text-xs text-steam-dark">
-              Ready for pickup — Thursday, 4:00 PM
+            <p className="text-sm leading-relaxed text-white/60">
+              Every recovered bottle re-enters global manufacturing as raw
+              material — reducing dependence on virgin plastic and creating
+              economic opportunity throughout Nigeria&apos;s recycling
+              ecosystem.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIAL */}
-      <section className="border-t border-steam/70 bg-ink">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-          <p className="ticket-number text-xs uppercase tracking-[0.25em] text-lite/70">
-            Ticket BLC-1904 · Closed, satisfied
-          </p>
-          <p className="mt-6 font-display text-2xl font-medium leading-snug text-chalk sm:text-3xl">
-            I stopped writing reminders to pick up my dry cleaning. BlueLite
-            texts me before I even remember to check.
-          </p>
-          <p className="mt-6 text-sm text-chalk/50">
-            — Folake A., weekly customer since 2023
-          </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-6xl px-6 py-20 text-center">
-        <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-          First ticket's on us.
-        </h2>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink/60">
-          New customers get 20% off their first order — pickup, clean, and
-          press included.
-        </p>
-        <Link
-          href="/contact"
-          className="mt-7 inline-block rounded-sm bg-blue px-7 py-3 text-sm font-semibold text-chalk transition-transform hover:scale-[1.02]"
-        >
-          Book your first pickup
-        </Link>
+      <section className="border-t border-grey-dark bg-navy">
+        <div className="mx-auto max-w-7xl px-6 py-20 text-center">
+          <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
+            Tell us what you need
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">
+            PET bottles, shredded PET, or cold, warm and hot-washed flakes —
+            our team can discuss your requirements and available supply
+            options.
+          </p>
+          <Link
+            href="/quote"
+            className="mt-7 inline-flex items-center gap-2 rounded-sm bg-emerald px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-dark"
+          >
+            Request a Quote
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
     </>
   );

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import "@fontsource/space-grotesk/500.css";
-import "@fontsource/space-grotesk/600.css";
-import "@fontsource/space-grotesk/700.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
+import "@fontsource/manrope/800.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
@@ -12,9 +13,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "BlueLite Concepts — Dry Cleaning & Garment Care",
+  title: "Bluelite Concept LTD — Recycled PET Materials from Nigeria",
   description:
-    "Pickup, cleaning, pressing, and delivery for people who don't have time to think about it twice. Same-week turnaround, ticketed tracking, garment-safe care.",
+    "Bluelite Concept LTD supplies recycled PET bottles, PET flakes and processed PET materials through a growing Nigerian collection, aggregation and processing network — for manufacturers and recycling companies worldwide.",
+  metadataBase: new URL("https://blueliteconceptltd.com"),
 };
 
 export default function RootLayout({

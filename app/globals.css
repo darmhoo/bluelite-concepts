@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
   --font-inter: "Inter", sans-serif;
   --font-jetbrains: "JetBrains Mono", monospace;
 }
@@ -13,8 +13,8 @@ html {
 }
 
 body {
-  background-color: #F7F4EE;
-  color: #14213D;
+  background-color: #ffffff;
+  color: #0b2545;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -27,80 +27,59 @@ body {
 }
 
 ::selection {
-  background-color: #7FD1E0;
-  color: #0F1A30;
+  background-color: #10a05a;
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid #2D6CDF;
+  outline: 2px solid #10a05a;
   outline-offset: 3px;
   border-radius: 2px;
 }
 
 /* ---------------------------------------------------- */
-/* Signature element: the claim-ticket stub.             */
-/* A physical dry-cleaning ticket — perforated tear edge, */
-/* notch punches, monospace ticket number.                */
+/* Signature element: the spec tag.                       */
+/* A material/shipping spec tag — die-cut notch corner,   */
+/* monospace batch code, used for products & process.     */
 /* ---------------------------------------------------- */
 
-.ticket {
+.spec-tag {
   position: relative;
-  background: #FFFDF9;
-  border: 1px solid #C7D0D9;
-  border-radius: 2px;
-  box-shadow: 0 1px 0 rgba(20, 33, 61, 0.03);
+  background: #ffffff;
+  border: 1px solid #c6cdd6;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 18px),
+    calc(100% - 18px) 100%,
+    0 100%
+  );
 }
 
-.ticket::before,
-.ticket::after {
+.spec-tag::after {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #F7F4EE;
-  border: 1px solid #C7D0D9;
+  bottom: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+  background: #f2f4f6;
+  border: 1px solid #c6cdd6;
 }
 
-.ticket::before {
-  left: -10px;
-}
-
-.ticket::after {
-  right: -10px;
-}
-
-.ticket-perf {
-  border-left: 1.5px dashed #C7D0D9;
-  border-right: 1.5px dashed #C7D0D9;
-}
-
-.ticket-stub-top::before,
-.ticket-stub-top::after {
-  top: 0;
-}
-
-.ticket-stub-bottom::before,
-.ticket-stub-bottom::after {
-  top: 100%;
-}
-
-.ticket-number {
+.batch-code {
   font-family: var(--font-jetbrains), monospace;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
-/* fold crease divider used between sections */
-.crease {
-  height: 1px;
-  background: linear-gradient(
+/* connecting line for process steps */
+.process-line {
+  background: repeating-linear-gradient(
     90deg,
-    transparent 0%,
-    #C7D0D9 15%,
-    #C7D0D9 85%,
-    transparent 100%
+    #c6cdd6 0px,
+    #c6cdd6 6px,
+    transparent 6px,
+    transparent 12px
   );
 }
