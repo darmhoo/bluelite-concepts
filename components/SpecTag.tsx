@@ -12,7 +12,7 @@ export default function SpecTag({
   code: string;
   title: string;
   description?: string;
-  image: any;
+  image?: any;
   children?: ReactNode;
 }) {
   return (
