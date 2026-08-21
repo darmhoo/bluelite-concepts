@@ -3,6 +3,19 @@ import { ArrowRight, Thermometer, ThermometerSun, Flame, Droplets, Recycle, Laye
 import SpecTag from "@/components/SpecTag";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ProductCta from "@/components/ProductCta";
+import Image from "next/image";
+import petShredding from "@/public/images/pet_shredding.jpeg"
+import petGrinding from "@/public/images/pet_grinding.webp"
+import clearWhite from "@/public/images/clear_white.jpeg"
+import greenFlakes from "@/public/images/green_flakes.jpeg"
+import blueFlakes from "@/public/images/blue_flakes.jpg"
+import mixedFlakes from "@/public/images/mixed_flakes.webp"
+import clearBottles from "@/public/images/clear_bottles.jpg"
+import greenBottles from "@/public/images/green_bottles.webp"
+import blueBottle from "@/public/images/blue_bottle.jpg"
+import mixedBottle from "@/public/images/mixed_colors.jpg"
+
+
 
 export const metadata: Metadata = {
   title: "Services — Bluelite Concept LTD",
@@ -18,19 +31,19 @@ const subNav = [
 ];
 
 const bottleMaterials = [
-  { code: "PET-BTL-CLR", title: "Clear PET Bottles", description: "Sorted transparent PET bottles suitable for recycling and further processing.", image: "Photo: baled clear PET bottles" },
-  { code: "PET-BTL-GRN", title: "Green PET Bottles", description: "Sorted green PET bottles collected from post-consumer sources.", image: "Photo: baled green PET bottles" },
-  { code: "PET-BTL-BLU", title: "Blue PET Bottles", description: "Sorted blue PET bottles suitable for recycling applications.", image: "Photo: baled blue PET bottles" },
-  { code: "PET-BTL-MIX", title: "Mixed PET Bottles", description: "Mixed-colour PET bottles available according to customer requirements.", image: "Photo: mixed-colour PET bottle bale" },
+  { code: "PET-BTL-CLR", title: "Clear PET Bottles", description: "Sorted transparent PET bottles suitable for recycling and further processing.", image: clearBottles },
+  { code: "PET-BTL-GRN", title: "Green PET Bottles", description: "Sorted green PET bottles collected from post-consumer sources.", image: greenBottles },
+  { code: "PET-BTL-BLU", title: "Blue PET Bottles", description: "Sorted blue PET bottles suitable for recycling applications.", image: blueBottle },
+  { code: "PET-BTL-MIX", title: "Mixed PET Bottles", description: "Mixed-colour PET bottles available according to customer requirements.", image: mixedBottle },
 ];
 
 const bottleProcess = ["Collection", "Aggregation", "Sorting", "Quality Inspection", "Packaging", "Delivery"];
 
 const flakes = [
-  { code: "PET-FLK-CLR", title: "Clear (White) PET Flakes", description: "Clean, transparent PET flakes suitable for a range of recycling and manufacturing applications.", applications: "Bottle recycling, polyester fibre, packaging, sheets and other industrial applications.", image: "Photo: clear PET flakes sample" },
-  { code: "PET-FLK-GRN", title: "Green PET Flakes", description: "Processed green PET flakes suitable for applications where colour consistency requirements allow green recycled material.", applications: "Fibre, strapping, sheets and non-food applications.", image: "Photo: green PET flakes sample" },
-  { code: "PET-FLK-BLU", title: "Blue PET Flakes", description: "Processed blue PET flakes suitable for various industrial recycling applications.", applications: "Fibre, sheets, industrial strapping and other manufacturing applications.", image: "Photo: blue PET flakes sample" },
-  { code: "PET-FLK-MIX", title: "Mixed PET Flakes", description: "Mixed-colour PET flakes supplied for applications where colour separation is less critical.", applications: "Fibre, industrial products and other recycling applications.", image: "Photo: mixed PET flakes sample" },
+  { code: "PET-FLK-CLR", title: "Clear (White) PET Flakes", description: "Clean, transparent PET flakes suitable for a range of recycling and manufacturing applications.", applications: "Bottle recycling, polyester fibre, packaging, sheets and other industrial applications.", image: clearWhite },
+  { code: "PET-FLK-GRN", title: "Green PET Flakes", description: "Processed green PET flakes suitable for applications where colour consistency requirements allow green recycled material.", applications: "Fibre, strapping, sheets and non-food applications.", image: greenFlakes },
+  { code: "PET-FLK-BLU", title: "Blue PET Flakes", description: "Processed blue PET flakes suitable for various industrial recycling applications.", applications: "Fibre, sheets, industrial strapping and other manufacturing applications.", image: blueFlakes },
+  { code: "PET-FLK-MIX", title: "Mixed PET Flakes", description: "Mixed-colour PET flakes supplied for applications where colour separation is less critical.", applications: "Fibre, industrial products and other recycling applications.", image: mixedFlakes },
 ];
 
 const shreddingApplications = [
@@ -142,10 +155,10 @@ export default function ServicesPage() {
           <div className="mt-10 space-y-6">
             {flakes.map((f) => (
               <div key={f.code} className="spec-tag bg-white px-8 py-7 sm:flex sm:items-start sm:gap-8">
-                <ImagePlaceholder
-                  label={f.image}
-                  aspect="aspect-square"
-                  className="mb-4 w-full shrink-0 sm:mb-0 sm:w-36"
+                <Image
+                  src={f.image}
+                  alt={f.description}
+                  className="mb-4 w-full shrink-0 sm:mb-0 sm:w-36 aspect-square"
                 />
                 <div className="sm:flex-1">
                   <span className="batch-code text-xs text-navy/40">{f.code}</span>
@@ -196,7 +209,7 @@ export default function ServicesPage() {
               to improve material handling and prepare PET bottles for
               subsequent processing.
             </p>
-            <ImagePlaceholder label="Photo: PET shredding line / shredded PET output" aspect="aspect-video" />
+            <Image alt="Photo: PET shredding line / shredded PET output" src={petShredding} className="aspect-video" />
           </div>
 
           <h3 className="mt-10 font-display text-lg font-semibold text-navy">
@@ -245,10 +258,10 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          <ImagePlaceholder
-            label="Photo: washing / drying equipment"
-            aspect="aspect-[21/9]"
-            className="mt-8"
+          <Image
+            src={petGrinding}
+            alt="Griding"
+            className="mt-8 aspect-[21/9]"
           />
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">

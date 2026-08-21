@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Target, Compass, Globe2, Users, Leaf } from "lucide-react";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
+import teamsPlace from "@/public/images/teams_illus.webp"
 
 export const metadata: Metadata = {
   title: "About Us — Bluelite Concept LTD",
@@ -42,10 +44,10 @@ export default function AboutPage() {
             an efficient supply network capable of serving manufacturers and
             recycling companies across international markets.
           </p>
-          <ImagePlaceholder
-            label="Photo: Bluelite Concept team or facility"
-            aspect="aspect-[21/9]"
-            className="mx-auto mt-10 max-w-2xl border-white/20 bg-white/5 [&_p]:text-white/40 [&_svg]:text-white/30"
+          <Image
+            alt="Photo: Bluelite Concept team or facility"
+            src={teamsPlace}
+            className="mx-auto mt-10 max-w-2xl border-white/20 bg-white/5 [&_p]:text-white/40 [&_svg]:text-white/30 aspect-[21/15]"
           />
         </div>
       </section>

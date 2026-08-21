@@ -3,6 +3,9 @@ import ProcessFlow from "@/components/ProcessFlow";
 import ProductCta from "@/components/ProductCta";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import { FlaskConical, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import ourProcess from "@/public/images/our_process.jpeg"
+import labAnalysis from "@/public/images/lab_analysis.jpg"
 
 export const metadata: Metadata = {
   title: "Our Process — Bluelite Concept LTD",
@@ -40,10 +43,10 @@ export default function OurProcessPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <ImagePlaceholder
-          label="Photo: sorting, shredding or washing line in operation"
-          aspect="aspect-[21/9]"
-          className="mb-14"
+        <Image
+        src={ourProcess}
+        alt="Our Process"
+          className="mb-14 aspect-[21/9]"
         />
         <ProcessFlow />
       </section>
@@ -86,10 +89,10 @@ export default function OurProcessPage() {
                 product specifications before shipment.
               </p>
             </div>
-            <ImagePlaceholder
-              label="Photo: lab / quality inspection"
-              aspect="aspect-square"
-              className="sm:w-40"
+            <Image
+              src={labAnalysis}
+              alt="Photo: lab / quality inspection"
+              className="sm:w-40 aspect-square"
             />
           </div>
         </div>

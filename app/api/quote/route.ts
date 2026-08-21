@@ -29,69 +29,130 @@ const FIELDS: { key: string; label: string; required?: boolean }[] = [
 ];
 
 export async function POST(req: NextRequest) {
+  console.log("📨 RFQ: POST request received");
+
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
   const QUOTE_TO_EMAIL = process.env.QUOTE_TO_EMAIL;
   const QUOTE_CC_EMAIL = process.env.QUOTE_CC_EMAIL;
+
   const QUOTE_FROM_EMAIL =
-    process.env.QUOTE_FROM_EMAIL || "Bluelite Concept LTD <onboarding@resend.dev>";
+    process.env.QUOTE_FROM_EMAIL ||
+    "Bluelite Concept LTD <admin@blueliteconceptltd.com>";
+
+  console.log("📋 RFQ environment:", {
+    hasResendApiKey: Boolean(RESEND_API_KEY),
+    hasToEmail: Boolean(QUOTE_TO_EMAIL),
+    hasCcEmail: Boolean(QUOTE_CC_EMAIL),
+    from: QUOTE_FROM_EMAIL,
+    to: QUOTE_TO_EMAIL,
+  });
 
   if (!RESEND_API_KEY || !QUOTE_TO_EMAIL) {
     console.error(
-      "RFQ form is not configured: missing RESEND_API_KEY or QUOTE_TO_EMAIL env vars."
+      "❌ RFQ configuration missing: RESEND_API_KEY or QUOTE_TO_EMAIL"
     );
+
     return NextResponse.json(
-      { error: "The quote request form isn't set up yet. Please email us directly." },
+      {
+        error:
+          "The quote request form isn't set up yet. Please email us directly.",
+      },
       { status: 500 }
     );
   }
 
   let body: Record<string, unknown>;
+
   try {
     body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+
+    console.log("✅ RFQ request body parsed");
+  } catch (err) {
+    console.error("❌ RFQ invalid JSON:", err);
+
+    return NextResponse.json(
+      { error: "Invalid request." },
+      { status: 400 }
+    );
   }
 
-  // honeypot
-  const honeypot = typeof body.website === "string" ? body.website.trim() : "";
-  if (honeypot) {
-    return NextResponse.json({ ok: true });
-  }
+  const honeypot =
+    typeof body.company_website_check === "string" ? body.company_website_check.trim() : "";
+
+  // if (honeypot) {
+  //   console.log("🤖 RFQ honeypot triggered");
+
+  //   return NextResponse.json({ ok: true });
+  // }
 
   const values: Record<string, string> = {};
+
   for (const f of FIELDS) {
     const raw = body[f.key];
     values[f.key] = typeof raw === "string" ? raw.trim() : "";
   }
 
-  const missing = FIELDS.filter((f) => f.required && !values[f.key]);
+  console.log("📝 RFQ values received:", {
+    companyName: values.companyName,
+    country: values.country,
+    contactPerson: values.contactPerson,
+    email: values.email,
+    phone: values.phone,
+    product: values.product,
+  });
+
+  const missing = FIELDS.filter(
+    (f) => f.required && !values[f.key]
+  );
+
   if (missing.length > 0) {
+    console.error(
+      "❌ RFQ missing fields:",
+      missing.map((f) => f.label)
+    );
+
     return NextResponse.json(
-      { error: `Please fill in: ${missing.map((f) => f.label).join(", ")}.` },
+      {
+        error: `Please fill in: ${missing
+          .map((f) => f.label)
+          .join(", ")}.`,
+      },
       { status: 400 }
     );
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (!emailPattern.test(values.email)) {
+    console.error("❌ RFQ invalid email:", values.email);
+
     return NextResponse.json(
       { error: "Please enter a valid email address." },
       { status: 400 }
     );
   }
 
+  console.log("🔑 Creating Resend client");
+
   const resend = new Resend(RESEND_API_KEY);
 
   const rows = FIELDS.map(
     (f) => `
       <tr>
-        <td style="padding: 6px 16px 6px 0; color: #5B6B7C; white-space: nowrap; vertical-align: top;">${escapeHtml(f.label)}</td>
-        <td style="padding: 6px 0; white-space: pre-wrap;">${escapeHtml(values[f.key] || "—")}</td>
-      </tr>`
+        <td style="padding: 6px 16px 6px 0; color: #5B6B7C; white-space: nowrap; vertical-align: top;">
+          ${escapeHtml(f.label)}
+        </td>
+        <td style="padding: 6px 0; white-space: pre-wrap;">
+          ${escapeHtml(values[f.key] || "—")}
+        </td>
+      </tr>
+    `
   ).join("");
 
+  console.log("🚀 Sending RFQ through Resend...");
+
   try {
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: QUOTE_FROM_EMAIL,
       to: QUOTE_TO_EMAIL,
       cc: QUOTE_CC_EMAIL || undefined,
@@ -100,7 +161,11 @@ export async function POST(req: NextRequest) {
       html: `
         <div style="font-family: sans-serif; font-size: 15px; color: #0B2545; line-height: 1.6;">
           <h2 style="margin-bottom: 4px;">New Request for Quote</h2>
-          <p style="color: #5B6B7C; margin-top: 0;">Submitted from the Bluelite Concept LTD website</p>
+
+          <p style="color: #5B6B7C; margin-top: 0;">
+            Submitted from the Bluelite Concept LTD website
+          </p>
+
           <table style="border-collapse: collapse; margin-top: 16px;">
             ${rows}
           </table>
@@ -108,19 +173,35 @@ export async function POST(req: NextRequest) {
       `,
     });
 
+    console.log("📬 Resend response received");
+
     if (error) {
-      console.error("Resend error:", error);
+      console.error("❌ Resend returned an error:", error);
+
       return NextResponse.json(
-        { error: "Couldn't send your request. Please try again or email us directly." },
+        {
+          error:
+            "Couldn't send your request. Please try again or email us directly.",
+        },
         { status: 502 }
       );
     }
 
-    return NextResponse.json({ ok: true });
+    console.log("✅ RFQ email sent successfully");
+    console.log("📧 Resend email ID:", data?.id);
+
+    return NextResponse.json({
+      ok: true,
+      id: data?.id,
+    });
   } catch (err) {
-    console.error("RFQ send failed:", err);
+    console.error("💥 RFQ Resend request failed:", err);
+
     return NextResponse.json(
-      { error: "Couldn't send your request. Please try again or email us directly." },
+      {
+        error:
+          "Couldn't send your request. Please try again or email us directly.",
+      },
       { status: 500 }
     );
   }

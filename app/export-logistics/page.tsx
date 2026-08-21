@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ProductCta from "@/components/ProductCta";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import { Anchor, FileText, Truck, Package, ClipboardList, Ship } from "lucide-react";
+import Image from "next/image";
+import exportReady from "@/public/images/export_ready.jpeg"
 
 export const metadata: Metadata = {
   title: "Export & Logistics — Bluelite Concept LTD",
@@ -48,10 +50,10 @@ export default function ExportLogisticsPage() {
 
       {/* SHIPPING TERMS */}
       <section className="mx-auto max-w-5xl px-6 py-20">
-        <ImagePlaceholder
-          label="Photo: container loading / port operations"
-          aspect="aspect-[21/9]"
-          className="mb-14"
+        <Image
+          alt="Photo: container loading / port operations"
+          src={exportReady}
+          className="mb-14 aspect-[21/9]"
         />
         <h2 className="font-display text-2xl font-bold text-navy">
           Shipping terms

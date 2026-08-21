@@ -11,7 +11,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 import SpecTag from "@/components/SpecTag";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
+import heroImage from "@/public/images/heroimg.jpeg"
+import exportReady from "@/public/images/export_ready.jpeg"
+import petBottles from "@/public/images/mixed_colors.jpg"
+import clearWhite from "@/public/images/clear_white.jpeg"
+import machine from "@/public/images/pet_shredding.jpeg"
+import washing from "@/public/images/washing.jpg"
 
 const products = [
   {
@@ -20,7 +26,7 @@ const products = [
     title: "PET Bottles",
     description: "Post-consumer PET bottles sourced through our collection and aggregation network.",
     href: "/services#pet-bottles",
-    image: "Photo: PET bottles",
+    image: petBottles,
   },
   {
     icon: Layers,
@@ -28,7 +34,7 @@ const products = [
     title: "PET Flakes",
     description: "Clear, Green, Blue and Mixed PET flakes processed to customer requirements.",
     href: "/services#pet-flakes",
-    image: "Photo: PET flakes",
+    image: clearWhite,
   },
   {
     icon: Scissors,
@@ -36,7 +42,7 @@ const products = [
     title: "PET Shredding",
     description: "Mechanical shredding of PET bottles into smaller, uniform material.",
     href: "/services#pet-shredding",
-    image: "Photo: shredded PET",
+    image: machine,
   },
   {
     icon: Droplets,
@@ -44,7 +50,7 @@ const products = [
     title: "PET Washing",
     description: "Cold, warm and hot washing options depending on end-use requirements.",
     href: "/services#pet-washing",
-    image: "Photo: PET washing/drying",
+    image: washing,
   },
 ];
 
@@ -95,9 +101,9 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <ImagePlaceholder
-              label="Photo: baled PET bottles / processing facility"
-              aspect="aspect-square"
+            <Image
+            alt=" Reliable Nigerian Supplier of Recycled PET Materials"
+              src={heroImage}
               className="border-white/20 bg-white/5 [&_p]:text-white/40 [&_svg]:text-white/30"
             />
           </div>
@@ -175,10 +181,10 @@ export default function Home() {
               valuable recycled materials for global manufacturing, helping
               reduce plastic pollution and support the circular economy.
             </p>
-            <ImagePlaceholder
-              label="Photo: baled recycled PET ready for export"
-              aspect="aspect-video"
+            <Image
+              src={exportReady}
               className="mt-6"
+              alt="Global Export Ready"
             />
             <Link
               href="/about"

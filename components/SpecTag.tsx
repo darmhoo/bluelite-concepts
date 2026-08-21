@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 
 export default function SpecTag({
   code,
@@ -11,12 +12,12 @@ export default function SpecTag({
   code: string;
   title: string;
   description?: string;
-  image?: string;
+  image: any;
   children?: ReactNode;
 }) {
   return (
     <div className="spec-tag flex flex-col gap-3 px-6 py-6">
-      {image && <ImagePlaceholder label={image} aspect="aspect-[4/3]" />}
+      {image && <Image alt={description ?? ""} src={image} className="aspect-[4/3]" />}
       <span className="batch-code text-xs text-navy/40">{code}</span>
       <h3 className="font-display text-lg font-semibold text-navy">
         {title}
