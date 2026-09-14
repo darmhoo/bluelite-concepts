@@ -65,7 +65,7 @@ export default function ServicesPage() {
     <>
       <section className="border-b border-grey-dark bg-navy">
         <div className="mx-auto max-w-4xl px-6 py-16 text-center sm:py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             What we supply
           </p>
           <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
       {/* PET BOTTLES */}
       <section id="pet-bottles" className="scroll-mt-40 border-b border-grey-dark">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             Product — PET-BTL
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold text-navy">
@@ -140,7 +140,7 @@ export default function ServicesPage() {
       {/* PET FLAKES */}
       <section id="pet-flakes" className="scroll-mt-40 border-b border-grey-dark bg-grey">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             Product — PET-FLK
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold text-navy">
@@ -192,7 +192,7 @@ export default function ServicesPage() {
       {/* PET SHREDDING */}
       <section id="pet-shredding" className="scroll-mt-40 border-b border-grey-dark">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             Product — PET-SHR
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold text-navy">
@@ -230,7 +230,7 @@ export default function ServicesPage() {
       {/* PET WASHING */}
       <section id="pet-washing" className="scroll-mt-40 bg-grey">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             Product — PET-WSH
           </p>
           <h2 className="mt-2 font-display text-3xl font-bold text-navy">

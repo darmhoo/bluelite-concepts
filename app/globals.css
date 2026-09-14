@@ -73,6 +73,30 @@ body {
   letter-spacing: 0.06em;
 }
 
+/* ---------------------------------------------------- */
+/* Kicker: the small green eyebrow label above headings. */
+/* ---------------------------------------------------- */
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #10a05a;
+}
+
+.kicker::before {
+  content: "";
+  width: 1.15em;
+  height: 2px;
+  flex-shrink: 0;
+  background: currentColor;
+}
+
 /* connecting line for process steps */
 .process-line {
   background: repeating-linear-gradient(

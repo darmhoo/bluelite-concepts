@@ -70,7 +70,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-28">
           <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
             <div>
-              <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+              <p className="kicker">
                 Trusted Nigerian Supplier of Recycled PET Materials
               </p>
               <h1 className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl">
@@ -112,7 +112,7 @@ export default function Home() {
 
       {/* PRODUCT HIGHLIGHTS */}
       <section className="mx-auto max-w-7xl px-6 py-20">
-        <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+        <p className="kicker">
           What we supply
         </p>
         <h2 className="mt-2 max-w-lg font-display text-3xl font-bold text-navy">
@@ -138,7 +138,7 @@ export default function Home() {
       {/* WHY BLUELITE */}
       <section className="border-y border-grey-dark bg-grey">
         <div className="mx-auto max-w-7xl px-6 py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             Why Bluelite Concept
           </p>
           <h2 className="mt-2 max-w-lg font-display text-3xl font-bold text-navy">
@@ -170,7 +170,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+            <p className="kicker">
               Sustainability
             </p>
             <h2 className="mt-2 font-display text-3xl font-bold text-navy">
@@ -195,7 +195,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="spec-tag flex flex-col gap-6 bg-navy px-8 py-10 text-white">
-            <span className="batch-code text-xs text-emerald">
+            <span className="kicker">
               CIRCULAR ECONOMY
             </span>
             <div className="grid grid-cols-3 gap-6 text-center">

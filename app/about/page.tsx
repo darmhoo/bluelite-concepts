@@ -24,7 +24,7 @@ export default function AboutPage() {
     <>
       <section className="border-b border-grey-dark bg-navy">
         <div className="mx-auto max-w-4xl px-6 py-16 text-center sm:py-20">
-          <p className="batch-code text-xs uppercase tracking-[0.25em] text-emerald">
+          <p className="kicker">
             Who we are
           </p>
           <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl">
