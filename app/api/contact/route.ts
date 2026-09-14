@@ -13,25 +13,14 @@ function escapeHtml(input: string) {
 }
 
 export async function POST(req: NextRequest) {
-  console.log("📨 Contact form POST received");
-
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
   const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL;
   const CONTACT_FROM_EMAIL =
     process.env.CONTACT_FROM_EMAIL ||
     "Bluelite Concept LTD <admin@blueliteconceptltd.com>";
 
-  console.log("Environment check:", {
-    hasResendKey: !!RESEND_API_KEY,
-    hasToEmail: !!CONTACT_TO_EMAIL,
-    fromEmail: CONTACT_FROM_EMAIL,
-    toEmail: CONTACT_TO_EMAIL,
-  });
-
   if (!RESEND_API_KEY || !CONTACT_TO_EMAIL) {
-    console.error(
-      "❌ Missing RESEND_API_KEY or CONTACT_TO_EMAIL"
-    );
+    console.error("Contact form misconfigured: missing RESEND_API_KEY or CONTACT_TO_EMAIL");
 
     return NextResponse.json(
       { error: "The contact form isn't set up yet." },
@@ -43,14 +32,17 @@ export async function POST(req: NextRequest) {
 
   try {
     body = await req.json();
-    console.log("✅ Request body received");
   } catch (error) {
-    console.error("❌ Failed to parse request body:", error);
-
     return NextResponse.json(
       { error: "Invalid request." },
       { status: 400 }
     );
+  }
+
+  const honeypot = typeof body.company === "string" ? body.company.trim() : "";
+
+  if (honeypot) {
+    return NextResponse.json({ ok: true });
   }
 
   const name = typeof body.name === "string" ? body.name.trim() : "";
@@ -58,15 +50,7 @@ export async function POST(req: NextRequest) {
   const message =
     typeof body.message === "string" ? body.message.trim() : "";
 
-  console.log("Contact form data:", {
-    name,
-    email,
-    messageLength: message.length,
-  });
-
   if (!name || !email || !message) {
-    console.error("❌ Missing required fields");
-
     return NextResponse.json(
       { error: "Name, email, and message are required." },
       { status: 400 }
@@ -74,8 +58,6 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = new Resend(RESEND_API_KEY);
-
-  console.log("🚀 Calling Resend...");
 
   try {
     const { data, error } = await resend.emails.send({
@@ -106,10 +88,8 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    console.log("📬 Resend response received");
-
     if (error) {
-      console.error("❌ Resend returned an error:", error);
+      console.error("Resend returned an error:", error);
 
       return NextResponse.json(
         { error: "Couldn't send your message." },
@@ -117,15 +97,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("✅ Email successfully submitted to Resend");
-    console.log("Resend email ID:", data?.id);
-
     return NextResponse.json({
       ok: true,
       id: data?.id,
     });
   } catch (err) {
-    console.error("💥 Resend request threw an exception:", err);
+    console.error("Resend request threw an exception:", err);
 
     return NextResponse.json(
       { error: "Couldn't send your message." },

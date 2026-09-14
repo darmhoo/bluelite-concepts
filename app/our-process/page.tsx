@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import ProcessFlow from "@/components/ProcessFlow";
 import ProductCta from "@/components/ProductCta";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import { FlaskConical, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
-import ourProcess from "@/public/images/our_process.jpeg"
+import ourProcess from "@/public/images/Our Process.png"
 import labAnalysis from "@/public/images/lab_analysis.jpg"
 
 export const metadata: Metadata = {

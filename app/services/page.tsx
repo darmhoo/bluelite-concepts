@@ -4,12 +4,12 @@ import SpecTag from "@/components/SpecTag";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import ProductCta from "@/components/ProductCta";
 import Image from "next/image";
-import petShredding from "@/public/images/pet_shredding.jpeg"
-import petGrinding from "@/public/images/pet_grinding.webp"
-import clearWhite from "@/public/images/clear_white.jpeg"
-import greenFlakes from "@/public/images/green_flakes.jpeg"
+import petShredding from "@/public/images/Services - PET Shredding.png"
+import petGrinding from "@/public/images/Services - PET Washing.png"
+import clearWhite from "@/public/images/Services - Clear (White) PET Flakes.png"
+import greenFlakes from "@/public/images/Services - Mixed PET Flakes.png"
 import blueFlakes from "@/public/images/blue_flakes.jpg"
-import mixedFlakes from "@/public/images/mixed_flakes.webp"
+import mixedFlakes from "@/public/images/Services -mixed pet bottles.png"
 import clearBottles from "@/public/images/clear_bottles.jpg"
 import greenBottles from "@/public/images/green_bottles.webp"
 import blueBottle from "@/public/images/blue_bottle.jpg"

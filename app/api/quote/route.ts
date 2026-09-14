@@ -29,8 +29,6 @@ const FIELDS: { key: string; label: string; required?: boolean }[] = [
 ];
 
 export async function POST(req: NextRequest) {
-  console.log("📨 RFQ: POST request received");
-
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
   const QUOTE_TO_EMAIL = process.env.QUOTE_TO_EMAIL;
   const QUOTE_CC_EMAIL = process.env.QUOTE_CC_EMAIL;
@@ -39,18 +37,8 @@ export async function POST(req: NextRequest) {
     process.env.QUOTE_FROM_EMAIL ||
     "Bluelite Concept LTD <admin@blueliteconceptltd.com>";
 
-  console.log("📋 RFQ environment:", {
-    hasResendApiKey: Boolean(RESEND_API_KEY),
-    hasToEmail: Boolean(QUOTE_TO_EMAIL),
-    hasCcEmail: Boolean(QUOTE_CC_EMAIL),
-    from: QUOTE_FROM_EMAIL,
-    to: QUOTE_TO_EMAIL,
-  });
-
   if (!RESEND_API_KEY || !QUOTE_TO_EMAIL) {
-    console.error(
-      "❌ RFQ configuration missing: RESEND_API_KEY or QUOTE_TO_EMAIL"
-    );
+    console.error("RFQ misconfigured: missing RESEND_API_KEY or QUOTE_TO_EMAIL");
 
     return NextResponse.json(
       {
@@ -65,11 +53,7 @@ export async function POST(req: NextRequest) {
 
   try {
     body = await req.json();
-
-    console.log("✅ RFQ request body parsed");
   } catch (err) {
-    console.error("❌ RFQ invalid JSON:", err);
-
     return NextResponse.json(
       { error: "Invalid request." },
       { status: 400 }
@@ -79,11 +63,9 @@ export async function POST(req: NextRequest) {
   const honeypot =
     typeof body.company_website_check === "string" ? body.company_website_check.trim() : "";
 
-  // if (honeypot) {
-  //   console.log("🤖 RFQ honeypot triggered");
-
-  //   return NextResponse.json({ ok: true });
-  // }
+  if (honeypot) {
+    return NextResponse.json({ ok: true });
+  }
 
   const values: Record<string, string> = {};
 
@@ -92,25 +74,11 @@ export async function POST(req: NextRequest) {
     values[f.key] = typeof raw === "string" ? raw.trim() : "";
   }
 
-  console.log("📝 RFQ values received:", {
-    companyName: values.companyName,
-    country: values.country,
-    contactPerson: values.contactPerson,
-    email: values.email,
-    phone: values.phone,
-    product: values.product,
-  });
-
   const missing = FIELDS.filter(
     (f) => f.required && !values[f.key]
   );
 
   if (missing.length > 0) {
-    console.error(
-      "❌ RFQ missing fields:",
-      missing.map((f) => f.label)
-    );
-
     return NextResponse.json(
       {
         error: `Please fill in: ${missing
@@ -124,15 +92,11 @@ export async function POST(req: NextRequest) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailPattern.test(values.email)) {
-    console.error("❌ RFQ invalid email:", values.email);
-
     return NextResponse.json(
       { error: "Please enter a valid email address." },
       { status: 400 }
     );
   }
-
-  console.log("🔑 Creating Resend client");
 
   const resend = new Resend(RESEND_API_KEY);
 
@@ -148,8 +112,6 @@ export async function POST(req: NextRequest) {
       </tr>
     `
   ).join("");
-
-  console.log("🚀 Sending RFQ through Resend...");
 
   try {
     const { data, error } = await resend.emails.send({
@@ -173,10 +135,8 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    console.log("📬 Resend response received");
-
     if (error) {
-      console.error("❌ Resend returned an error:", error);
+      console.error("Resend returned an error:", error);
 
       return NextResponse.json(
         {
@@ -187,15 +147,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("✅ RFQ email sent successfully");
-    console.log("📧 Resend email ID:", data?.id);
-
     return NextResponse.json({
       ok: true,
       id: data?.id,
     });
   } catch (err) {
-    console.error("💥 RFQ Resend request failed:", err);
+    console.error("RFQ Resend request failed:", err);
 
     return NextResponse.json(
       {

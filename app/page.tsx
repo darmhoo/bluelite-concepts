@@ -12,12 +12,12 @@ import {
 } from "lucide-react";
 import SpecTag from "@/components/SpecTag";
 import Image from "next/image";
-import heroImage from "@/public/images/heroimg.jpeg"
-import exportReady from "@/public/images/export_ready.jpeg"
-import petBottles from "@/public/images/mixed_colors.jpg"
-import clearWhite from "@/public/images/clear_white.jpeg"
-import machine from "@/public/images/pet_shredding.jpeg"
-import washing from "@/public/images/washing.jpg"
+import heroImage from "@/public/images/About Us.png"
+import exportReady from "@/public/images/Export & Logistics.png"
+import petBottles from "@/public/images/Services -mixed pet bottles.png"
+import clearWhite from "@/public/images/Services - Clear (White) PET Flakes.png"
+import machine from "@/public/images/Services - PET Shredding.png"
+import washing from "@/public/images/Services - PET Washing.png"
 
 const products = [
   {
@@ -25,7 +25,7 @@ const products = [
     code: "PET-BTL",
     title: "PET Bottles",
     description: "Post-consumer PET bottles sourced through our collection and aggregation network.",
-    href: "/services#pet-bottles",
+    href: "/pet-bottles",
     image: petBottles,
   },
   {
@@ -33,7 +33,7 @@ const products = [
     code: "PET-FLK",
     title: "PET Flakes",
     description: "Clear, Green, Blue and Mixed PET flakes processed to customer requirements.",
-    href: "/services#pet-flakes",
+    href: "/pet-flakes",
     image: clearWhite,
   },
   {
@@ -41,7 +41,7 @@ const products = [
     code: "PET-SHR",
     title: "PET Shredding",
     description: "Mechanical shredding of PET bottles into smaller, uniform material.",
-    href: "/services#pet-shredding",
+    href: "/pet-shredding",
     image: machine,
   },
   {
@@ -49,7 +49,7 @@ const products = [
     code: "PET-WSH",
     title: "PET Washing",
     description: "Cold, warm and hot washing options depending on end-use requirements.",
-    href: "/services#pet-washing",
+    href: "/pet-washing",
     image: washing,
   },
 ];

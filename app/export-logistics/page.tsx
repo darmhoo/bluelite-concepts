@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import ProductCta from "@/components/ProductCta";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import { Anchor, FileText, Truck, Package, ClipboardList, Ship } from "lucide-react";
 import Image from "next/image";
-import exportReady from "@/public/images/export_ready.jpeg"
+import exportReady from "@/public/images/Export & Logistics.png"
 
 export const metadata: Metadata = {
   title: "Export & Logistics — Bluelite Concept LTD",

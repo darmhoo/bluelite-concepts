@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const productLinks = [
-  { href: "/services#pet-bottles", label: "PET Bottles" },
-  { href: "/services#pet-flakes", label: "PET Flakes" },
-  { href: "/services#pet-shredding", label: "PET Shredding" },
-  { href: "/services#pet-washing", label: "PET Washing" },
+  { href: "/pet-bottles", label: "PET Bottles" },
+  { href: "/pet-flakes", label: "PET Flakes" },
+  { href: "/pet-shredding", label: "PET Shredding" },
+  { href: "/pet-washing", label: "PET Washing" },
 ];
 
 const companyLinks = [
