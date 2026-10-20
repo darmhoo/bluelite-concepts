@@ -61,9 +61,10 @@ export async function POST(req: NextRequest) {
   }
 
   const honeypot =
-    typeof body.company_website_check === "string" ? body.company_website_check.trim() : "";
+    typeof body.hp_trap_field === "string" ? body.hp_trap_field.trim() : "";
 
   if (honeypot) {
+    console.warn("RFQ submission dropped by honeypot");
     return NextResponse.json({ ok: true });
   }
 

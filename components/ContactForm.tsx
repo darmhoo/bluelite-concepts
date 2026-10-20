@@ -47,8 +47,8 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="spec-tag px-8 py-8">
       <label className="absolute -left-[9999px] opacity-0" aria-hidden="true">
-        Company
-        <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+        Leave this field empty
+        <input type="text" name="hp_trap_field" tabIndex={-1} autoComplete="off" />
       </label>
 
       <div className="grid gap-5">

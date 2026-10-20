@@ -60,8 +60,8 @@ export default function QuoteForm() {
     <form onSubmit={handleSubmit} className="spec-tag px-8 py-8">
       {/* honeypot */}
       <label className="absolute -left-[9999px] opacity-0" aria-hidden="true">
-        Website
-        <input type="text" name="company_website_check" tabIndex={-1} autoComplete="off" />
+        Leave this field empty
+        <input type="text" name="hp_trap_field" tabIndex={-1} autoComplete="off" />
       </label>
 
       <div className="grid gap-5 sm:grid-cols-2">

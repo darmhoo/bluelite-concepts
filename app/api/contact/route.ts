@@ -39,9 +39,10 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const honeypot = typeof body.company === "string" ? body.company.trim() : "";
+  const honeypot = typeof body.hp_trap_field === "string" ? body.hp_trap_field.trim() : "";
 
   if (honeypot) {
+    console.warn("Contact submission dropped by honeypot");
     return NextResponse.json({ ok: true });
   }
 
